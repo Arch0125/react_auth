@@ -5,8 +5,7 @@ import { StyleSheet, Text, View,TextInput,KeyboardAvoidingView,TouchableOpacity 
 import { auth } from '../firebase'
 import { Image } from 'react-native'
 
-
-const LoginScreen = ({navigation}) => {
+const RegisterScreen = ({navigation}) => {
 
     const[email,setEmail]=useState('')
     const[password,setPassword]=useState('')
@@ -28,11 +27,7 @@ const LoginScreen = ({navigation}) => {
         .catch(error => alert(error.message))
     }
 
-    const handleSignIn =()=>{
-        auth.signInWithEmailAndPassword(email,password)
-        .then(userCredentials => {const user = userCredentials.user})
-        .catch(error =>alert(error.message))
-    }
+    
     
 
 
@@ -46,12 +41,14 @@ const LoginScreen = ({navigation}) => {
             </View>
 
             <View style={styles.buttoncontainer} >
-                <TouchableOpacity style={styles.button} onPress={handleSignIn} >
-                    <Text style={styles.buttonText} >Log In</Text>
+                
+
+                <TouchableOpacity style={styles.buttonOutline} onPress={handleSignUp} >
+                    <Text style={styles.buttonTextOutline} >Register</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonOutline} onPress={() => {navigation.navigate("Register")}} >
-                    <Text style={styles.buttonTextOutline} >Register</Text>
+                <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("Login")}} >
+                    <Text style={styles.buttonText} >Back to Log In</Text>
                 </TouchableOpacity>
 
             </View>
@@ -60,7 +57,7 @@ const LoginScreen = ({navigation}) => {
     )
 }
 
-export default LoginScreen
+export default RegisterScreen
 
 const styles = StyleSheet.create({
     container:{
